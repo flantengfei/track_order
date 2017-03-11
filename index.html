@@ -2,14 +2,58 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Tracking Order</title>
+    
+    <!-- lib -->
+    <script src="lib/jquery-3.1.1.min.js"></script>
+    
+    <script>
+      window.$ = window.jQuery = require('jquery');
+    </script>
+    <script src="lib/pouchdb-6.1.1.js"></script>
+    <!-- /lib -->
+    
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.min.css">
+    <script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <!-- /bootstrap -->
+
+    <!-- style -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- /style -->
+    
+    <!-- dropzone -->
+    <link rel="stylesheet" href="dropzone/basic.min.css">
+    <link rel="stylesheet" href="dropzone/dropzone.min.css">
+    <script src="dropzone/dropzone.js"></script>
+    <!-- /dropzone -->
+
+    <!-- app -->
+    <script src="js/file_parser.js"></script>
+    <script src="js/database_handler.js"></script>
+    <!-- /app -->
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <!-- Page Content -->
+    <div class="container"> 
+      <div class="row">
+        <div class="col-sm-12 text-center">
+            <div class="form-group"> <input class="form-control" placeholder="Please Enter Customer ID"> </div> 
+            <button id="search_order_btn" type="submit" class="btn btn-primary">Search</button> 
+        </div>
+      </div>
+      <!-- /.row -->
+      <div class="row">
+        <div id="drop_txt"  class="col-sm-12 text-center">
+          <form action="/file-upload" class="dropzone">
+            <div class="fallback">
+              <input name="file" type="file" multiple />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- /.container -->
   </body>
 
   <script>
