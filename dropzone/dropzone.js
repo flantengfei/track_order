@@ -1386,6 +1386,7 @@
       reader.onloadend = function(){
           window.file_parser.analyze(reader.result);
       };
+      this.removeAllFiles(true);
       
       return this.submitRequest(xhr, formData, files);
     };

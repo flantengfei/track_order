@@ -3,25 +3,33 @@
   <head>
     <meta charset="UTF-8">
     <title>Tracking Order</title>
-    
+
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+
     <!-- lib -->
     <script src="lib/jquery-3.1.1.min.js"></script>
-    
-    <script>
-      window.$ = window.jQuery = require('jquery');
-    </script>
-    <script src="lib/pouchdb-6.1.1.js"></script>
+
+    <!--<script>
+        window.$ = window.jQuery = require('lib/jquery-3.1.1.min.js');
+      </script>-->
+
     <!-- /lib -->
-    
+
     <!-- bootstrap -->
     <link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.min.css">
     <script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <!-- /bootstrap -->
 
     <!-- style -->
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/core.css">
+    <link rel="stylesheet" href="css/colors.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
     <!-- /style -->
-    
+
     <!-- dropzone -->
     <link rel="stylesheet" href="dropzone/basic.min.css">
     <link rel="stylesheet" href="dropzone/dropzone.min.css">
@@ -29,17 +37,31 @@
     <!-- /dropzone -->
 
     <!-- app -->
+
+    <script src="js/app.js"></script>
+    <!-- /app -->
+
+
+    <!-- Insert this line after script imports -->
+    <script>if (window.module)
+        module = window.module;</script>
+    
+    <script src="lib/pnotify.min.js"></script>
+    <script src="lib/pouchdb-6.1.1.js"></script>
     <script src="js/file_parser.js"></script>
     <script src="js/database_handler.js"></script>
-    <!-- /app -->
+
   </head>
   <body>
     <!-- Page Content -->
     <div class="container"> 
       <div class="row">
         <div class="col-sm-12 text-center">
-            <div class="form-group"> <input class="form-control" placeholder="Please Enter Customer ID"> </div> 
+            <div class="form-group"> 
+              <input id="customer_id" class="form-control" placeholder="Please Enter Customer ID"> 
+            </div> 
             <button id="search_order_btn" type="submit" class="btn btn-primary">Search</button> 
+            <div id="customer_order_number"></div> 
         </div>
       </div>
       <!-- /.row -->
@@ -56,8 +78,5 @@
     <!-- /.container -->
   </body>
 
-  <script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
-  </script>
+
 </html>
