@@ -16,6 +16,10 @@ form.dropzone .dz-message span {
   color: grey;
 }
 
+.dz-error-message {
+  display: none !important
+}
+
 #customer_order_number {
   height: 100px;
   width: 60%;

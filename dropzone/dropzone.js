@@ -1387,6 +1387,7 @@
           addclass: 'bg-danger'
         });
         this.removeAllFiles(true);
+        window.database_handler.number_data_saved = 0;
       } else {
         /* start read content and processing data */
         var reader = new FileReader();
