@@ -11,11 +11,11 @@
   
   file_parser.prototype = {
     
-    analyze: function(file_content) {
+    analyze: function(file_content, file_name) {
       this.file_content = file_content;
       this.parse_file();
       this.collected_data = this.collect_customer_id();
-      global.database_handler.insert_data(this.collected_data);
+      global.database_handler.insert_data(this.collected_data, file_name);
     },
     
     parse_file: function() {

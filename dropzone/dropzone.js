@@ -1379,14 +1379,24 @@
       for (i = _m = 0, _ref5 = files.length - 1; 0 <= _ref5 ? _m <= _ref5 : _m >= _ref5; i = 0 <= _ref5 ? ++_m : --_m) {
         formData.append(this._getParamName(i), files[i], this._renameFilename(files[i].name));
       }
-      console.log(files);
       
-      var reader = new FileReader();
-      reader.readAsText(files[0]);
-      reader.onloadend = function(){
-          window.file_parser.analyze(reader.result);
-      };
-      this.removeAllFiles(true);
+      /* custom code for dropzone upload file processing */
+      if(files[0].type !== 'text/plain'){ // file content type has to been text
+        new PNotify({
+          title: 'Can not read file content on ' + files[0].name,
+          addclass: 'bg-danger'
+        });
+        this.removeAllFiles(true);
+      } else {
+        /* start read content and processing data */
+        var reader = new FileReader();
+        reader.readAsText(files[0]);
+        reader.onloadend = function(){
+            window.file_parser.analyze(reader.result, files[0].name);
+        };
+        window.dropzone_global = this;
+      }
+      /* /custom code for dropzone upload file processing */
       
       return this.submitRequest(xhr, formData, files);
     };

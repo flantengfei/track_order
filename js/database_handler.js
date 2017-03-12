@@ -4,7 +4,7 @@
 (function(global){
   
   /* display file data process status */
-  var message_handler = function(response) {
+  var message_handler = function(response, file_name) {
     var success = 0;
     for(var i = 0; i < response.length; i++) {
       if(typeof response[i].ok !== 'undefined' && response[i].ok === true) {
@@ -13,26 +13,33 @@
     }
     
     new PNotify({
-      title: success+' customer order records has been added',
+      title: success + ' customer order records has been added from ' + file_name,
       addclass: 'bg-success'
     });
   };
   
+  /* if all file has been processed, remove files on dropzone */
+  var check_process_status = function() {
+    global.database_handler.number_data_saved++;
+    
+    if (global.dropzone_global.files.length === global.database_handler.number_data_saved) {
+      global.dropzone_global.removeAllFiles(true); // clear files uploaded
+      global.database_handler.number_data_saved = 0; // reset
+    }
+  };
+  
   var database_handler = function() {
     this.db = new PouchDB('customer_order'); // db.destroy(''customer_order'');
-    this.order_number = '';
+    this.number_data_saved = 0;
   };
   
   database_handler.prototype = {
     
-    insert_data: function(data) {
-      var num_of_record = data.length;
-      
+    insert_data: function(data, file_name) {
       /* insert multiple data records all in once */
       this.db.bulkDocs(data, function(err, response) {
-        //console.log(err);
-        //console.log(response);
-        message_handler(response);
+        check_process_status();
+        message_handler(response, file_name);
       });
     },
     
@@ -41,7 +48,6 @@
       this.db.get(customer_id, function(err, doc) {
         if (err) { 
           $('#customer_order_number').html('No Record Found');
-          return console.log(err); 
         }
         $('#customer_order_number').html(doc.order_number);
       });
