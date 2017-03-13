@@ -18,17 +18,31 @@
     <!-- /lib -->
 
     <!-- bootstrap -->
-    <link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.min.css">-->
     <script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <!-- /bootstrap -->
 
     <!-- style -->
-    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+<!--    <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/core.css">
     <link rel="stylesheet" href="css/colors.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/components.css">-->
     <!-- /style -->
+    
+    <!-- metronic -->
+    <link rel="stylesheet" href="metronic/css/font-awesome.css">
+    <link rel="stylesheet" href="metronic/css/simple-line-icons.css">
+    <link rel="stylesheet" href="metronic/css/simple-line-icons.css">
+    <link rel="stylesheet" href="metronic/css/bootstrap.css">
+    <link rel="stylesheet" href="metronic/css/plugins.css">
+    <link rel="stylesheet" href="metronic/css/components.css">
+    <link rel="stylesheet" href="metronic/css/google_fonts.css">
+    
+    
+    <script src="metronic/js/jquery.slimscroll.js" type="text/javascript"></script>
+    <script src="metronic/js/app.js" type="text/javascript"></script>
+    <!-- /metronic -->
 
     <!-- dropzone -->
     <link rel="stylesheet" href="dropzone/basic.min.css">
@@ -50,21 +64,42 @@
     <script src="lib/pouchdb-6.1.1.js"></script>
     <script src="js/file_parser.js"></script>
     <script src="js/database_handler.js"></script>
-
+    <script src="js/activity_log.js"></script>
+ 
   </head>
   <body>
     <!-- Page Content -->
-    <div class="container"> 
+    <div class="col-sm-7 left_side_container"> 
       <div class="row">
-        <div class="col-sm-12 text-center">
-            <div class="form-group"> 
-              <input id="customer_id" class="form-control" placeholder="Please Enter Customer ID"> 
-            </div> 
-            <button id="search_order_btn" type="submit" class="btn btn-primary">Search</button> 
+        <div class="col-sm-12">
+          <div class="portlet light bordered">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="icon-social-dribbble font-blue-sharp"></i>
+                <span class="caption-subject font-blue-sharp bold uppercase">Order Data</span>
+              </div>
+            </div>
+            <div class="portlet-body form">
+              <div class="form-body">
+                <div class="form-group">
+                  <div class="input-group input-group-lg">
+                    <input id="customer_id" type="text" class="form-control" placeholder="Please Enter Customer ID">
+                    <span class="input-group-btn">
+                      <button id="search_order_btn" class="btn blue" type="button">Search</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 text-center">
             <div id="customer_order_number"></div> 
+          </div>
         </div>
       </div>
-      <!-- /.row -->
+
       <div class="row">
         <div id="drop_txt"  class="col-sm-12 text-center">
           <form action="/file-upload" class="dropzone">
@@ -75,7 +110,82 @@
         </div>
       </div>
     </div>
-    <!-- /.container -->
+    
+    <div class="col-sm-5 right_side_container">
+      <div class="col-sm-12">
+        <div class="portlet light bordered">
+          <div class="portlet-title">
+            <div class="caption">
+              <i class="icon-share font-dark hide"></i>
+              <span class="caption-subject font-dark bold uppercase">Recent Activities</span>
+            </div>
+            
+          </div>
+          <div class="portlet-body">
+            <div class="scroller" style="height: 395px;" data-always-visible="1" data-rail-visible="0">
+              <ul class="feeds">
+                <!--<li>
+                  <div class="col1">
+                    <div class="cont">
+                      <div class="cont-col1">
+                        <div class="label label-sm label-info">
+                          <i class="fa fa-search"></i>
+                        </div>
+                      </div>
+                      <div class="cont-col2">
+                        <div class="desc"> search customer id found order number </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="col1">
+                    <div class="cont">
+                      <div class="cont-col1">
+                        <div class="label label-sm label-warning">
+                          <i class="fa fa-warning"></i>
+                        </div>
+                      </div>
+                      <div class="cont-col2">
+                        <div class="desc"> search customer id no record found </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="col1">
+                    <div class="cont">
+                      <div class="cont-col1">
+                        <div class="label label-sm label-success">
+                          <i class="fa fa-bar-chart-o"></i>
+                        </div>
+                      </div>
+                      <div class="cont-col2">
+                        <div class="desc"> # new record captured from file 1.txt </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="col1">
+                    <div class="cont">
+                      <div class="cont-col1">
+                        <div class="label label-sm label-danger">
+                          <i class="fa fa-close"></i>
+                        </div>
+                      </div>
+                      <div class="cont-col2">
+                        <div class="desc"> file can not capture from </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>-->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 
 

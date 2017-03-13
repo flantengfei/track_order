@@ -1382,12 +1382,9 @@
       
       /* custom code for dropzone upload file processing */
       if(files[0].type !== 'text/plain'){ // file content type has to been text
-        new PNotify({
-          title: 'Can not read file content on ' + files[0].name,
-          addclass: 'bg-danger'
-        });
-        this.removeAllFiles(true);
-        window.database_handler.number_data_saved = 0;
+        window.activity_log.display_file_parse_error(files[0].name);
+        window.database_handler.file_cannot_read++;
+        //this.removeAllFiles(true);
       } else {
         /* start read content and processing data */
         var reader = new FileReader();
