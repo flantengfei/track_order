@@ -40,4 +40,15 @@ $(function(){
   
 });
 
+/*
+
+App.blockUI({
+  target: '.left_side_container',
+  boxed: true,
+  message: 'Processing...'
+});
+
+App.unblockUI('.left_side_container');
+
+*/
 //A1H6YNEBZ3JQUI

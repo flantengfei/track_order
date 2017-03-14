@@ -24,6 +24,7 @@
       global.dropzone_global.removeAllFiles(true); // clear files uploaded
       global.database_handler.number_data_saved = 0; // reset
       global.database_handler.file_cannot_read = 0;
+      App.unblockUI('.left_side_container'); // hide loading screen
     }
   };
   

@@ -1384,7 +1384,6 @@
       if(files[0].type !== 'text/plain'){ // file content type has to been text
         window.activity_log.display_file_parse_error(files[0].name);
         window.database_handler.file_cannot_read++;
-        //this.removeAllFiles(true);
       } else {
         /* start read content and processing data */
         var reader = new FileReader();

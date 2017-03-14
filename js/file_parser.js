@@ -12,6 +12,13 @@
   file_parser.prototype = {
     
     analyze: function(file_content, file_name) {
+      /* display loading screen */
+      App.blockUI({
+        target: '.left_side_container',
+        boxed: true,
+        message: 'Processing Files...'
+      });
+      
       this.file_content = file_content;
       this.parse_file();
       this.collected_data = this.collect_customer_id();
@@ -35,11 +42,14 @@
           console.log("Can not capture order number from page.");
           return false;
         }
-
-        data.push({
-          _id:          $(this).val(),
-          order_number: $(this).closest("tr").find("a[href^='https://sellercentral.amazon.com/hz/orders/']").text()
-        });
+        
+        var id = $(this).val();
+        if(id !== '') {
+          data.push({
+            _id:          id,
+            order_number: $(this).closest("tr").find("a[href^='https://sellercentral.amazon.com/hz/orders/']").text()
+          });
+        }
       });
       return data;
     }
