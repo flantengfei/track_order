@@ -12,13 +12,6 @@
   file_parser.prototype = {
     
     analyze: function(file_content, file_name) {
-      /* display loading screen */
-      App.blockUI({
-        target: '.left_side_container',
-        boxed: true,
-        message: 'Processing Files...'
-      });
-      
       this.file_content = file_content;
       this.parse_file();
       this.collected_data = this.collect_customer_id();

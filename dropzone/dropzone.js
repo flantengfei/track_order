@@ -1379,8 +1379,15 @@
       for (i = _m = 0, _ref5 = files.length - 1; 0 <= _ref5 ? _m <= _ref5 : _m >= _ref5; i = 0 <= _ref5 ? ++_m : --_m) {
         formData.append(this._getParamName(i), files[i], this._renameFilename(files[i].name));
       }
-      
       /* custom code for dropzone upload file processing */
+      
+      /* display loading screen */
+      App.blockUI({
+        target: '.left_side_container',
+        boxed: true,
+        message: 'Processing Files...'
+      });
+      //console.log('dropzone uploadFiles');
       if(files[0].type !== 'text/plain'){ // file content type has to been text
         window.activity_log.display_file_parse_error(files[0].name);
         window.database_handler.file_cannot_read++;
