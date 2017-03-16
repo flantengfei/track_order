@@ -1,3 +1,6 @@
+//var PouchDB = require('pouchdb');
+//var replicationStream = require('pouchdb-replication-stream');
+
 $(function(){
   
   var SelectText = function(element) {

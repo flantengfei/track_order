@@ -28,8 +28,15 @@
     }
   };
   
+  /**
+   * Database handler 
+   */
   var database_handler = function() {
     this.db = new PouchDB('customer_order'); // db.destroy(''customer_order'');
+    
+    //this.db_load = require('PouchDB');
+    //this.db_load.plugin(require(PouchDBLoad));
+    
     this.number_data_saved = 0;
     this.file_cannot_read = 0;
   };
@@ -39,6 +46,7 @@
     insert_data: function(data, file_name) {
       /* insert multiple data records all in once */
       this.db.bulkDocs(data, function(err, response) {
+        //console.log(response);
         check_process_status();
         message_handler(response, file_name);
       });
@@ -55,10 +63,41 @@
           window.activity_log.display_search(customer_id, doc.order_number);
         }
       });
-    }
+    },
     
+    dump_all_record: function() {
+      App.blockUI({target: '.left_side_container', boxed: true, message: 'Exporting data...'});
+      this.db.allDocs({
+        include_docs: true,
+        attachments: true
+      }, function (err, response) {
+        if (err) {
+          return console.log(err);
+        }
+        //console.log(JSON.stringify(response));
+        //console.log(response);
+        window.activity_log.display_database_export(response.total_rows);
+        var blob = new Blob([JSON.stringify(response)], {type: "text/plain"});
+        saveAs(blob, "data.json");
+        App.unblockUI('.left_side_container');
+      });
+    },
+    
+    import_record: function(data, source_file_name) {
+      //console.log(data);
+      var clean_data = [];
+      for(var i = 0; i < data.rows.length; i++) {
+        clean_data.push({
+          _id:          data.rows[i].doc._id,
+          order_number: data.rows[i].doc.order_number
+        });
+      }
+      this.insert_data(clean_data, source_file_name);
+    }
   };
   
   global.database_handler = new database_handler();
   
 })(this);
+
+window.webkitRequestFileSystem;

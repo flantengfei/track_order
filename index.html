@@ -10,7 +10,7 @@
 
     <!-- lib -->
     <script src="lib/jquery-3.1.1.min.js"></script>
-
+    <script src="lib/FileSaver.js"></script>
     <!--<script>
         window.$ = window.jQuery = require('lib/jquery-3.1.1.min.js');
       </script>-->
@@ -77,6 +77,18 @@
               <div class="caption">
                 <i class="icon-social-dribbble font-blue-sharp"></i>
                 <span class="caption-subject font-blue-sharp bold uppercase">Order Data</span>
+              </div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn blue btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false"> Actions
+                    <i class="fa fa-angle-down"></i>
+                  </a>
+                  <ul class="dropdown-menu pull-right">
+                    <li>
+                      <a onclick="window.database_handler.dump_all_record();" href="#"> Export Data</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
             <div class="portlet-body form">
@@ -186,7 +198,8 @@
         </div>
       </div>
     </div>
+    <div class="page-footer" style="font-size: 11px; margin-top: -10px; padding-left:17px;">
+        Copyright © 2017  Worldlink LLC. All rights reserved
+    </div>
   </body>
-
-
 </html>

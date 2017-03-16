@@ -86,10 +86,24 @@
       $(this.log_list).prepend(html);
     },
     
-    append_log: function() {
-      $(this.log_list).prepend('sssss');
+    display_database_export: function(num_record_exported) {
+      var html =      '<li>';
+          html +=        '<div class="col1">';
+          html +=          '<div class="cont">';
+          html +=            '<div class="cont-col1">';
+          html +=              '<div class="label label-sm label-default">';
+          html +=                '<i class="fa fa-database"></i>';
+          html +=              '</div>';
+          html +=            '</div>';
+          html +=            '<div class="cont-col2">';
+          html +=              '<div class="desc"> '+num_record_exported+' records been exported to data.json </div>';
+          html +=            '</div>';
+          html +=          '</div>';
+          html +=        '</div>';
+          html +=      '</li>';
+ 
+      $(this.log_list).prepend(html);
     }
-    
   };
   
   global.activity_log = new activity_log_handler();
@@ -98,5 +112,5 @@
 //  window.activity_log.display_no_record()
 //  window.activity_log.display_file_parse_error()
 //  window.activity_log.display_file_parse_success()
-  
+//  window.activity_log.display_database_export()
 })(this);
