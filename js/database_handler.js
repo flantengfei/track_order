@@ -16,13 +16,15 @@
   };
   
   /* if all file has been processed, remove files on dropzone */
-  var check_process_status = function() {
-    global.database_handler.number_data_saved++;
+  global.check_process_status = function(success) {
+    if(typeof success === 'undefined' || success !== false) {
+      global.database_handler.number_files_saved++;
+    }
     
     /* data parse finish and clear dropzone */
-    if (global.dropzone_global.files.length === (global.database_handler.number_data_saved + window.database_handler.file_cannot_read)) {
+    if (global.dropzone_global.files.length === (global.database_handler.number_files_saved + window.database_handler.file_cannot_read)) {
       global.dropzone_global.removeAllFiles(true); // clear files uploaded
-      global.database_handler.number_data_saved = 0; // reset
+      global.database_handler.number_files_saved = 0; // reset
       global.database_handler.file_cannot_read = 0;
       App.unblockUI('.left_side_container'); // hide loading screen
     }
@@ -37,7 +39,7 @@
     //this.db_load = require('PouchDB');
     //this.db_load.plugin(require(PouchDBLoad));
     
-    this.number_data_saved = 0;
+    this.number_files_saved = 0;
     this.file_cannot_read = 0;
   };
   
@@ -47,7 +49,7 @@
       /* insert multiple data records all in once */
       this.db.bulkDocs(data, function(err, response) {
         //console.log(response);
-        check_process_status();
+        global.check_process_status();
         message_handler(response, file_name);
       });
     },

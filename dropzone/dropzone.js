@@ -1401,6 +1401,7 @@
         /* file content type has to been text */
         window.activity_log.display_file_parse_error(files[0].name);
         window.database_handler.file_cannot_read++;
+        window.check_process_status(false);
       } else {
         /* start read content and processing data */
         var reader = new FileReader();
