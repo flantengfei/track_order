@@ -67,7 +67,7 @@
       $(this.log_list).prepend(html);
     },
     
-    display_file_parse_success: function(num_record_captured, file_name) {
+    display_file_parse_success: function(num_record_captured, file_name, total_record_from_file) {
       var html =      '<li>';
           html +=        '<div class="col1">';
           html +=          '<div class="cont">';
@@ -77,7 +77,7 @@
           html +=              '</div>';
           html +=            '</div>';
           html +=            '<div class="cont-col2">';
-          html +=              '<div class="desc"> '+num_record_captured+' records captured from file '+file_name+' </div>';
+          html +=              '<div class="desc"> '+num_record_captured+' out of '+total_record_from_file+' records captured from file '+file_name+' </div>';
           html +=            '</div>';
           html +=          '</div>';
           html +=        '</div>';

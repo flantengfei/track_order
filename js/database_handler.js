@@ -4,15 +4,16 @@
 (function(global){
   
   /* display file data process status */
-  var message_handler = function(response, file_name) {
+  var message_handler = function(response, file_name, total_data) {
     var success = 0;
     for(var i = 0; i < response.length; i++) {
       if(typeof response[i].ok !== 'undefined' && response[i].ok === true) {
         success++;
       }
     }
+    var total_record_from_file = total_data.length;
     
-    window.activity_log.display_file_parse_success(success, file_name);
+    window.activity_log.display_file_parse_success(success, file_name, total_record_from_file);
   };
   
   /* if all file has been processed, remove files on dropzone */
@@ -50,7 +51,7 @@
       this.db.bulkDocs(data, function(err, response) {
         //console.log(response);
         global.check_process_status();
-        message_handler(response, file_name);
+        message_handler(response, file_name, data);
       });
     },
     
