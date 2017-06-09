@@ -2,26 +2,30 @@
  * txt web page parser
  */
 (function(global){
-  
+
   var file_parser = function() {
     this.file_content = '';
     this.file_object = {};
-    this.collected_data = [];
   };
-  
+
   file_parser.prototype = {
-    
-    analyze: function(file_content, file_name) {
-      this.file_content = file_content;
-      this.parse_file();
-      this.collected_data = this.collect_customer_id();
-      global.database_handler.insert_data(this.collected_data, file_name);
+
+    get_data: function(file_content, file_name) {
+      try {
+        this.file_content = file_content;
+        this.parse_file();
+        var collected_data = this.collect_customer_id();
+        return {'data': collected_data, 'file_name': file_name};
+      } catch (error) {
+        console.log(error);
+        return {'data': [], 'file_name': file_name};
+      }
     },
-    
+
     parse_file: function() {
       this.file_object = $(this.file_content);
     },
-    
+
     /* retrieve customer id from dom file object */
     collect_customer_id: function() {
       var data = [];
@@ -35,7 +39,7 @@
           console.log("Can not capture order number from page.");
           return false;
         }
-        
+
         var id = $(this).val();
         if(id !== '') {
           data.push({
@@ -47,7 +51,7 @@
       return data;
     }
   };
-  
+
   global.file_parser = new file_parser();
-  
+
 })(this);

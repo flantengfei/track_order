@@ -105,9 +105,9 @@
 
     /*
     This is a list of all available events you can register on a dropzone object.
-    
+
     You can register an event handler like this:
-    
+
         dropzone.on("dragEnter", function() { });
      */
 
@@ -1379,40 +1379,6 @@
       for (i = _m = 0, _ref5 = files.length - 1; 0 <= _ref5 ? _m <= _ref5 : _m >= _ref5; i = 0 <= _ref5 ? ++_m : --_m) {
         formData.append(this._getParamName(i), files[i], this._renameFilename(files[i].name));
       }
-      /* custom code for dropzone upload file processing */
-      
-      /* display loading screen */
-      App.blockUI({
-        target: '.left_side_container',
-        boxed: true,
-        message: 'Processing Files...'
-      });
-      
-      /* json file database record */
-      if(files[0].name.indexOf('.json') >= 0){
-        /* start read content and processing data */
-        var reader = new FileReader();
-        reader.readAsText(files[0]);
-        reader.onloadend = function(){
-          window.database_handler.import_record(jQuery.parseJSON(reader.result), files[0].name);
-          //window.file_parser.analyze(reader.result, files[0].name);
-        };
-      }else if(files[0].type !== 'text/plain'){ 
-        /* file content type has to been text */
-        window.activity_log.display_file_parse_error(files[0].name);
-        window.database_handler.file_cannot_read++;
-        window.check_process_status(false);
-      } else {
-        /* start read content and processing data */
-        var reader = new FileReader();
-        reader.readAsText(files[0]);
-        reader.onloadend = function(){
-            window.file_parser.analyze(reader.result, files[0].name);
-        };
-      }
-      window.dropzone_global = this;
-      /* /custom code for dropzone upload file processing */
-      
       return this.submitRequest(xhr, formData, files);
     };
 
@@ -1689,7 +1655,7 @@
 
 
   /*
-  
+
   Bugfix for iOS 6 and 7
   Source: http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
   based on the work of https://github.com/stomita/ios-imagefile-megapixel
@@ -1796,6 +1762,6 @@
     }
   };
 
-  contentLoaded(window, Dropzone._autoDiscoverFunction);
+  //contentLoaded(window, Dropzone._autoDiscoverFunction);
 
 }).call(this);

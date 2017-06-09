@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="css/colors.css">
     <link rel="stylesheet" href="css/components.css">-->
     <!-- /style -->
-    
+
     <!-- metronic -->
     <link rel="stylesheet" href="metronic/css/font-awesome.css">
     <link rel="stylesheet" href="metronic/css/simple-line-icons.css">
@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="metronic/css/plugins.css">
     <link rel="stylesheet" href="metronic/css/components.css">
     <link rel="stylesheet" href="metronic/css/google_fonts.css">
-    
+
     <script src="metronic/js/jquery.blockui.min.js" type="text/javascript"></script>
     <script src="metronic/js/jquery.slimscroll.js" type="text/javascript"></script>
     <script src="metronic/js/app.js" type="text/javascript"></script>
@@ -59,17 +59,18 @@
     <!-- Insert this line after script imports -->
     <script>if (window.module)
         module = window.module;</script>
-    
+
     <script src="lib/pnotify.min.js"></script>
     <script src="lib/pouchdb-6.1.1.js"></script>
     <script src="js/file_parser.js"></script>
     <script src="js/database_handler.js"></script>
     <script src="js/activity_log.js"></script>
- 
+    <script src="js/file_processor.js"></script>
+
   </head>
   <body>
     <!-- Page Content -->
-    <div class="col-sm-7 left_side_container"> 
+    <div class="col-sm-7 left_side_container">
       <div class="row">
         <div class="col-sm-12">
           <div class="portlet light bordered">
@@ -107,14 +108,14 @@
         </div>
         <div class="row">
           <div class="col-sm-12 text-center">
-            <div id="customer_order_number"></div> 
+            <div id="customer_order_number"></div>
           </div>
         </div>
       </div>
 
       <div class="row">
         <div id="drop_txt"  class="col-sm-12 text-center">
-          <form action="/file-upload" class="dropzone">
+          <form id="file_dropzone" action="#" class="dropzone">
             <div class="fallback">
               <input name="file" type="file" multiple />
             </div>
@@ -122,7 +123,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-sm-5 right_side_container">
       <div class="col-sm-12">
         <div class="portlet light bordered">
@@ -131,7 +132,7 @@
               <i class="icon-share font-dark hide"></i>
               <span class="caption-subject font-dark bold uppercase">Recent Activities</span>
             </div>
-            
+
           </div>
           <div class="portlet-body">
             <div class="scroller" style="height: 395px;" data-always-visible="1" data-rail-visible="0">
@@ -199,7 +200,7 @@
       </div>
     </div>
     <div class="page-footer" style="font-size: 11px; margin-top: -10px; padding-left:17px;">
-        Copyright © 2017  Worldlink LLC. All rights reserved
+        Copyright © 2017  WorldLink LLC. All rights reserved
     </div>
   </body>
 </html>
