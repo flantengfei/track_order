@@ -45,11 +45,11 @@ $(function(){
     parallelUploads: 1,
 
     drop: function(event) {
-      App.blockUI({
-        target: '.left_side_container',
-        boxed: true,
-        message: 'Initializing File Processor... '
-      });
+      window.file_processing_handler.remain_notification();
+    },
+
+    addedfile: function(event) {
+      window.file_processing_handler.remain_notification();
     },
 
     accept: function(file, done) {

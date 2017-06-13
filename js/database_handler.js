@@ -5,15 +5,20 @@
 
   /* display file data process status */
   var message_handler = function(response, file_name, total_data) {
-    var success = 0;
-    for(var i = 0; i < response.length; i++) {
-      if(typeof response[i].ok !== 'undefined' && response[i].ok === true) {
-        success++;
-      }
-    }
-    var total_record_from_file = total_data.length;
+    try {
+      var success = 0;
 
-    window.activity_log.display_file_parse_success(success, file_name, total_record_from_file);
+      for(var i = 0; i < response.length; i++) {
+        if(typeof response[i].ok !== 'undefined' && response[i].ok === true) {
+          success++;
+        }
+      }
+      var total_record_from_file = total_data.length;
+      window.activity_log.display_file_parse_success(success, file_name, total_record_from_file);
+    } catch (error) {
+      window.activity_log.display_file_parse_error(file_name);
+      console.log('Error: ' + file_name + ' can not be parse.');
+    }
   };
 
   /* if all file has been saved, reset all status variables */
@@ -53,15 +58,19 @@
 
     insert_data: function(data, file_name) {
       /* insert multiple data records all in once */
-      this.db.bulkDocs(data, function(err, response) {
-        //console.log(response);
-        global.file_processing_handler.saving_data_notification(
-          global.database_handler.number_files_saved,
-          file_name
-        );
-        global.check_process_status();
-        message_handler(response, file_name, data);
-      });
+      try {
+        this.db.bulkDocs(data, function(err, response) {
+          //console.log(response);
+          global.file_processing_handler.saving_data_notification(
+            global.database_handler.number_files_saved,
+            file_name
+          );
+          global.check_process_status();
+          message_handler(response, file_name, data);
+        });
+      } catch (error) {
+        throw(error);
+      }
     },
 
     search_order: function(customer_id) {
@@ -85,13 +94,14 @@
       }, function (err, response) {
         if (err) {
           return console.log(err);
-        }
-        //console.log(JSON.stringify(response));
-        //console.log(response);
-        window.activity_log.display_database_export(response.total_rows);
-        var blob = new Blob([JSON.stringify(response)], {type: "text/plain"});
-        saveAs(blob, "data.json");
-        App.unblockUI('.left_side_container');
+        } else {
+          //console.log(JSON.stringify(response));
+          //console.log(response);
+          window.activity_log.display_database_export(response.total_rows);
+          var blob = new Blob([JSON.stringify(response)], {type: "text/plain"});
+          saveAs(blob, "data.json");
+          App.unblockUI('.left_side_container');
+        } 
       });
     },
 
