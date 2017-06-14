@@ -1,0 +1,45 @@
+- clear data storage -
+60492
+
+1. drop one txt file
+see: records captured get saved
+
+2. drop three txt files
+see: records captured get saved
+
+3. drop one illegal file
+see: error message file can not be read
+
+4. drop three illegal file
+see: error message all three files can not be read
+
+5. drop 2 illegal files and 3 txt files
+see: 2 illegal files can not be read, records on 3 files get captured and saved
+
+6. export data as json
+see: generate json file and promote to save
+
+7. clear data storage and drop the json file from step 6
+see: records in json file get saved, records captured from json file
+     show equal number of record export from step 6
+
+8. drop 1 json file 2 illegal files and 3 txt files
+see: data in json file get saved,
+     error message on 2 illegal files
+     3 txt files get captured and saved
+
+9. repeat 1 - 8 with file selection instead of drop
+
+10. drop files or folders contain file between 20MB or 30 MB
+see: error message on illegal files can not be read, records on all txt file
+     records get captured and saved
+
+11. drop entire file folder(more than 800MB)
+see: error message on illegal files can not be read, records on all txt file
+    records get captured and saved
+
+12. search non-exists customer id
+see: show no record found message
+
+13. search existing customer id
+see: show order number in message box

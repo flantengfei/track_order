@@ -35,13 +35,13 @@
       var reader = new FileReader();
       reader.readAsText(file);
       this.reader_executing++;
-      console.log('##reader_executing: '+this.reader_executing);
+      //console.log('##reader_executing: '+this.reader_executing);
       reader.onloadend = function(){
         window.database_handler.import_record(jQuery.parseJSON(reader.result), file.name);
         obj.num_file_processed++;
 
         obj.reader_executing--;
-        console.log('##reader_executing: '+obj.reader_executing);
+        //console.log('##reader_executing: '+obj.reader_executing);
 
         obj.check_process_progress();
       };
@@ -62,15 +62,15 @@
       var reader = new FileReader();
       reader.readAsText(file);
       this.reader_executing++;
-      console.log('##reader_executing: '+this.reader_executing);
+      //console.log('##reader_executing: '+this.reader_executing);
       reader.onloadend = function() {
         obj.num_file_processed++;
         obj.collected_file_data.push(window.file_parser.get_data(reader.result, file.name));
-        console.log('current total precount: ' + obj.file_total_precount + ' | ' + 'file been processed: ' + obj.num_file_processed);
+        //console.log('current total precount: ' + obj.file_total_precount + ' | ' + 'file been processed: ' + obj.num_file_processed);
         obj.process_notification(obj.num_file_processed, file.name);
 
         obj.reader_executing--;
-        console.log('##reader_executing: '+obj.reader_executing);
+        //console.log('##reader_executing: '+obj.reader_executing);
 
         obj.check_process_progress();
       };
