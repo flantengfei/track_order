@@ -19,6 +19,16 @@ $(function(){
     }
   };
 
+  /* prevent for file drop outside box break window */
+  window.addEventListener("dragover",function(e){
+    e = e || event;
+    e.preventDefault();
+  },false);
+  window.addEventListener("drop",function(e){
+    e = e || event;
+    e.preventDefault();
+  },false);
+
   $(document).off('.main_ui_listener');
 
   /* search order number */
