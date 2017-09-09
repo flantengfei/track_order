@@ -6,7 +6,10 @@
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flantengfei/track_order.git"
+  },
   "keywords": [
     "Electron",
     "quick",
@@ -18,5 +21,15 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^1.4.1"
+  },
+  "bugs": {
+    "url": "https://github.com/electron/electron-quick-start/issues"
+  },
+  "homepage": "https://github.com/electron/electron-quick-start#readme",
+  "dependencies": {
+    "amazon-mws-node": "^1.0.4",
+    "electron": "^1.7.7",
+    "jquery": "^3.1.1",
+    "pouchdb-replication-stream": "^1.2.9"
   }
 }
